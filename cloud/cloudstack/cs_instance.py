@@ -661,6 +661,7 @@ class AnsibleCloudStackInstance(AnsibleCloudStack):
         args['startvm']             = start_vm
         args['rootdisksize']        = self.module.params.get('root_disk_size')
         args['affinitygroupnames']  = ','.join(self.module.params.get('affinity_groups'))
+        args['affinitygroupids']  = ','.join(self.module.params.get('affinity_group_ids'))
         args['details']             = self.get_details()
 
         security_groups = self.module.params.get('security_groups')
@@ -942,6 +943,7 @@ def main():
         hypervisor = dict(choices=CS_HYPERVISORS, default=None),
         security_groups = dict(type='list', aliases=[ 'security_group' ], default=None),
         affinity_groups = dict(type='list', aliases=[ 'affinity_group' ], default=[]),
+        affinity_group_ids = dict(type='list', aliases=[ 'affinity_id' ], default=[]),
         domain = dict(default=None),
         account = dict(default=None),
         project = dict(default=None),
